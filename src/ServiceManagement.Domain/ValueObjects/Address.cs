@@ -1,4 +1,6 @@
-﻿namespace ServiceManagement.Domain.ValueObjects;
+﻿using ServiceManagement.Domain.Exceptions;
+
+namespace ServiceManagement.Domain.ValueObjects;
 
 public class Address
 {
@@ -13,18 +15,9 @@ public class Address
     private Address() { }
 
     public Address(string street, string number, string city, string state, string zipCode,
-                  string neighborhood = "", string complement = "")
+                          string neighborhood = "", string complement = "")
     {
-        if (string.IsNullOrWhiteSpace(street))
-            throw new ArgumentException("Street cannot be empty", nameof(street));
-        if (string.IsNullOrWhiteSpace(number))
-            throw new ArgumentException("Number cannot be empty", nameof(number));
-        if (string.IsNullOrWhiteSpace(city))
-            throw new ArgumentException("City cannot be empty", nameof(city));
-        if (string.IsNullOrWhiteSpace(state))
-            throw new ArgumentException("State cannot be empty", nameof(state));
-        if (string.IsNullOrWhiteSpace(zipCode))
-            throw new ArgumentException("ZipCode cannot be empty", nameof(zipCode));
+        ValidateAddress(street, number, city, state, zipCode);
 
         Street = street;
         Number = number;
@@ -33,5 +26,23 @@ public class Address
         City = city;
         State = state;
         ZipCode = zipCode;
+    }
+
+    private void ValidateAddress(string street, string number, string city, string state, string zipCode)
+    {
+        if (string.IsNullOrWhiteSpace(street))
+            throw new InvalidAddressException(nameof(Street), "Street cannot be empty");
+
+        if (string.IsNullOrWhiteSpace(number))
+            throw new InvalidAddressException(nameof(Number), "Number cannot be empty");
+
+        if (string.IsNullOrWhiteSpace(city))
+            throw new InvalidAddressException(nameof(City), "City cannot be empty");
+
+        if (string.IsNullOrWhiteSpace(state))
+            throw new InvalidAddressException(nameof(State), "State cannot be empty");
+
+        if (string.IsNullOrWhiteSpace(zipCode))
+            throw new InvalidAddressException(nameof(ZipCode), "ZipCode cannot be empty");
     }
 }
