@@ -4,7 +4,7 @@ using ServiceManagement.Domain.ValueObjects;
 
 namespace ServiceManagement.Domain.Entities;
 
-public class Company : User
+public class Company : BaseEntity
 {
     public string CompanyName { get; private set; }
     public string PhoneNumber { get; private set; }
@@ -18,7 +18,6 @@ public class Company : User
                    string companyName,
                    string phoneNumber, 
                    Address address)
-        : base(email, passwordHash, UserRole.Company)
     {
         ValidateCompany(companyName, phoneNumber, address);
 

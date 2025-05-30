@@ -40,7 +40,8 @@ public static class DependencyInjection
             };
         });
 
-        services.AddAuthorization(options =>
+        ///TODO Add authorization
+        /*services.AddAuthorization(options =>
         {
             options.AddPolicy(AuthorizationPolicies.AdminOnly, policy =>
                 policy.RequireRole(UserRole.Administrator.ToString()));
@@ -57,7 +58,7 @@ public static class DependencyInjection
 
             options.AddPolicy(AuthorizationPolicies.AllUsers, policy =>
                 policy.RequireAuthenticatedUser());
-        });
+        });*/
 
         services.AddScoped<ITokenGenerator, JwtTokenGenerator>();
 
