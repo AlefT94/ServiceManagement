@@ -32,7 +32,7 @@ public class JwtTokenGenerator : ITokenGenerator
             };
 
         //Add claims based on user type
-        switch (user.Role)
+        /*switch (user.Role)
         {
             case UserRole.Employee:
                 var employee = user as Employee;
@@ -50,7 +50,7 @@ public class JwtTokenGenerator : ITokenGenerator
                     claims.Add(new Claim("CompanyName", company.CompanyName));
                 }
                 break;
-        }
+        }*/
 
         var securityToken = new JwtSecurityToken(
             issuer: _jwtSettings.Issuer,

@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\ServiceManagement.Application\ServiceManagement.Application.csproj" />
     <ProjectReference Include="..\ServiceManegement.Infrastructure\ServiceManegement.Infrastructure.csproj" />
   </ItemGroup>
 
