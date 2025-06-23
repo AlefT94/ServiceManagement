@@ -10,6 +10,8 @@ public class Company : BaseEntity
     public string PhoneNumber { get; private set; }
     public Address Address { get; private set; }
     public bool IsActive { get; private set; }
+    public int UserId { get; set; }
+    public User User { get; set; }
 
     private Company() : base() { }
 
@@ -17,7 +19,8 @@ public class Company : BaseEntity
                    string passwordHash,
                    string companyName,
                    string phoneNumber, 
-                   Address address)
+                   Address address,
+                   User user)
     {
         ValidateCompany(companyName, phoneNumber, address);
 
@@ -25,6 +28,7 @@ public class Company : BaseEntity
         PhoneNumber = phoneNumber;
         Address = address;
         IsActive = true;
+        User = user;
     }
 
     private void ValidateCompany(string companyName, string phoneNumber, Address address)

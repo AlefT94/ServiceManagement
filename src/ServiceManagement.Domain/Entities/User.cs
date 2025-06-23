@@ -3,20 +3,18 @@ using ServiceManagement.Domain.Exceptions;
 
 namespace ServiceManagement.Domain.Entities;
 
-public abstract class User : BaseEntity
+public class User : BaseEntity
 {
-    public int Id { get; private set; }
     public string Email { get; private set; }
     public string PasswordHash { get; private set; }
     public string Name { get; private set; }
-    public string PhoneNumber { get; private set; }
     public UserRole Role { get; private set; }
-    public Company Company { get; private set; }
     public bool IsActive { get; set; }
+    public Company? Company { get; set; }
 
     protected User(){ }
 
-    protected User(string email, string passwordHash, UserRole role, string name, string phoneNumber, Company company)
+    public User(string email, string passwordHash, UserRole role, string name)
     {
         ValidateUser(email, passwordHash);
 
@@ -24,9 +22,7 @@ public abstract class User : BaseEntity
         PasswordHash = passwordHash;
         Role = role;
         CreatedAt = DateTime.UtcNow;
-        Company = company;
         Name = name;
-        PhoneNumber = phoneNumber;
         IsActive = true;
     }
 
@@ -72,11 +68,7 @@ public abstract class User : BaseEntity
         if (string.IsNullOrWhiteSpace(name))
             throw new RequiredValueException(nameof(Name));
 
-        if (string.IsNullOrWhiteSpace(phoneNumber))
-            throw new RequiredValueException(nameof(PhoneNumber));
-
         Name = name;
-        PhoneNumber = phoneNumber;
         UpdatedAt = DateTime.UtcNow;
     }
 

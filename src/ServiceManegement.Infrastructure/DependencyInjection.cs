@@ -1,11 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using ServiceManagement.Domain.Enums;
+using ServiceManagement.Domain.Interfaces;
 using ServiceManegement.Infrastructure.Authentication;
 using ServiceManegement.Infrastructure.Authorization;
+using ServiceManegement.Infrastructure.Persistence;
 using System.Text;
 
 namespace ServiceManegement.Infrastructure;
@@ -16,7 +20,12 @@ public static class DependencyInjection
             this IServiceCollection services,
             IConfiguration configuration)
     {
-        // Configuração do JWT
+
+        //DbContext configuration
+        services.AddDbContext<AppDbContext>(options =>
+            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+
+        //JWT configurations
         var jwtSettings = new JwtSettings();
         configuration.GetSection("JwtSettings").Bind(jwtSettings);
         services.AddSingleton(jwtSettings);
@@ -61,6 +70,7 @@ public static class DependencyInjection
         });*/
 
         services.AddScoped<ITokenGenerator, JwtTokenGenerator>();
+        services.AddScoped<IUserPasswordHasher, UserPasswordHasher>();
 
         return services;
     }

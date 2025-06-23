@@ -1,0 +1,15 @@
+services:
+  servicemanagement.api:
+    image: ${DOCKER_REGISTRY-}servicemanagementapi
+    build:
+      context: .
+      dockerfile: src/ServiceManegement.API/Dockerfile
+
+  servicemanagementdb:
+    image: postgres
+
+  pgadmin:
+    image: dpage/pgadmin4
+
+volumes:
+  postgrees_servicemanagementdb:

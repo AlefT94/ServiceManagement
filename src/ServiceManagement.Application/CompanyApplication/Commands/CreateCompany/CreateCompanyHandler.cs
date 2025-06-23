@@ -1,6 +1,6 @@
 ﻿using MediatR;
 
-namespace ServiceManagement.Application.Company.Commands.CreateCompany;
+namespace ServiceManagement.Application.CompanyApplication.Commands.CreateCompany;
 
 public class CreateCompanyHandler : IRequestHandler<CreateCompanyCommand, string>
 {
