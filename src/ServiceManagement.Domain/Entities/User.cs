@@ -1,4 +1,5 @@
 ﻿using ServiceManagement.Domain.Enums;
+using ServiceManagement.Domain.Errors;
 using ServiceManagement.Domain.Exceptions;
 
 namespace ServiceManagement.Domain.Entities;
@@ -39,16 +40,13 @@ public class User : BaseEntity
     {
 
         if (string.IsNullOrWhiteSpace(email))
-            throw new RequiredValueException(nameof(Email));
+            throw new EntityValidationException(nameof(User), "Email", Error.EmptyEmail.Message);
 
         if (string.IsNullOrWhiteSpace(passwordHash))
-            throw new RequiredValueException(nameof(PasswordHash));
+            throw new EntityValidationException(nameof(User), "Password", Error.PasswordInvalidFormat.Message);
 
-        if (string.IsNullOrWhiteSpace(passwordHash))
-            throw new RequiredValueException(nameof(Name));
-
-        if (!IsValidEmail(email))
-            throw new EntityValidationException(nameof(User), nameof(Email), "Invalid email format");
+        if (!IsValidEmail(email) )
+            throw new EntityValidationException(nameof(User), "Email", Error.EmailInvalidFormat.Message);
     }
 
     private bool IsValidEmail(string email)
@@ -63,7 +61,7 @@ public class User : BaseEntity
             return false;
         }
     }
-    public void UpdateProfile(string name, string phoneNumber, string position)
+    public void UpdateProfile(string name)
     {
         if (string.IsNullOrWhiteSpace(name))
             throw new RequiredValueException(nameof(Name));

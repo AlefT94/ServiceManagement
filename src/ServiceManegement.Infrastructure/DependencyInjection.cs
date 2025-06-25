@@ -1,18 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
-using ServiceManagement.Domain.Enums;
 using ServiceManagement.Domain.Interfaces;
-using ServiceManegement.Infrastructure.Authentication;
-using ServiceManegement.Infrastructure.Authorization;
-using ServiceManegement.Infrastructure.Persistence;
+using ServiceManagement.Infrastructure.Authentication;
+using ServiceManagement.Infrastructure.Data.Repository;
+using ServiceManagement.Infrastructure.Persistence;
 using System.Text;
 
-namespace ServiceManegement.Infrastructure;
+namespace ServiceManagement.Infrastructure;
 
 public static class DependencyInjection
 {
@@ -71,6 +68,7 @@ public static class DependencyInjection
 
         services.AddScoped<ITokenGenerator, JwtTokenGenerator>();
         services.AddScoped<IUserPasswordHasher, UserPasswordHasher>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
 
         return services;
     }

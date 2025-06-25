@@ -1,8 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using ServiceManagement.API.Dto;
-using ServiceManagement.Application.Company.Commands.CreateCompany;
+using ServiceManagement.Application.CompanyApplication.Commands.CreateCompany;
 
 namespace ServiceManagement.API.Controllers
 {
@@ -11,9 +10,14 @@ namespace ServiceManagement.API.Controllers
     public class CompanyController(IMediator mediator) : ControllerBase
     {
         [HttpPost]
-        public IActionResult CreateCompany([FromBody] CreateCompanyDto request)
+        public IActionResult CreateCompany([FromBody] CreateCompanyCommand request)
         {
             var result = mediator.Send(request);
+            
+            if(!result.Result.IsSuccess)
+            {
+                return BadRequest(result.Result);
+            }
             return Ok(result.Result);
         }
     }

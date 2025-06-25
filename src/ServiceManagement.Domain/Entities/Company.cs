@@ -15,9 +15,7 @@ public class Company : BaseEntity
 
     private Company() : base() { }
 
-    public Company(string email, 
-                   string passwordHash,
-                   string companyName,
+    public Company(string companyName,
                    string phoneNumber, 
                    Address address,
                    User user)
@@ -29,6 +27,7 @@ public class Company : BaseEntity
         Address = address;
         IsActive = true;
         User = user;
+        CreatedAt = DateTime.UtcNow;
     }
 
     private void ValidateCompany(string companyName, string phoneNumber, Address address)

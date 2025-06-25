@@ -1,6 +1,6 @@
 ﻿using ServiceManagement.Domain.Interfaces;
 
-namespace ServiceManegement.Infrastructure.Authentication;
+namespace ServiceManagement.Infrastructure.Authentication;
 
 public class UserPasswordHasher : IUserPasswordHasher
 {

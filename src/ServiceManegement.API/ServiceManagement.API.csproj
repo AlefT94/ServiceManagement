@@ -22,7 +22,11 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ServiceManagement.Application\ServiceManagement.Application.csproj" />
-    <ProjectReference Include="..\ServiceManegement.Infrastructure\ServiceManegement.Infrastructure.csproj" />
+    <ProjectReference Include="..\ServiceManegement.Infrastructure\ServiceManagement.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Dto\" />
   </ItemGroup>
 
 </Project>

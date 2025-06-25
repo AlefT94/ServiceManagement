@@ -1,6 +1,6 @@
 ﻿using ServiceManagement.Domain.Entities;
 
-namespace ServiceManegement.Infrastructure.Authentication;
+namespace ServiceManagement.Infrastructure.Authentication;
 
 public interface ITokenGenerator
 {

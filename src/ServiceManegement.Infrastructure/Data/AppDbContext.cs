@@ -1,12 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ServiceManagement.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace ServiceManegement.Infrastructure.Persistence;
+namespace ServiceManagement.Infrastructure.Persistence;
 
 public class AppDbContext : DbContext
 {
@@ -29,7 +24,18 @@ public class AppDbContext : DbContext
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
         });
+
         base.OnModelCreating(modelBuilder);
+
+        // setting tha tables name to lower case
+        foreach (var entity in modelBuilder.Model.GetEntityTypes())
+        {
+            var tableName = entity.GetTableName();
+            if (!string.IsNullOrEmpty(tableName))
+            {
+                entity.SetTableName(tableName.ToLower());
+            }
+        }
         
     }
 }

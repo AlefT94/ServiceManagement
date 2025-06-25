@@ -5,14 +5,14 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using ServiceManegement.Infrastructure.Persistence;
+using ServiceManagement.Infrastructure.Persistence;
 
 #nullable disable
 
-namespace ServiceManegement.Infrastructure.Migrations
+namespace ServiceManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250623022138_FirstMigration")]
+    [Migration("20250625161809_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -60,7 +60,7 @@ namespace ServiceManegement.Infrastructure.Migrations
                     b.HasIndex("UserId")
                         .IsUnique();
 
-                    b.ToTable("Companies");
+                    b.ToTable("companies");
                 });
 
             modelBuilder.Entity("ServiceManagement.Domain.Entities.User", b =>
@@ -89,10 +89,6 @@ namespace ServiceManegement.Infrastructure.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("PhoneNumber")
-                        .IsRequired()
-                        .HasColumnType("text");
-
                     b.Property<int>("Role")
                         .HasColumnType("integer");
 
@@ -101,7 +97,7 @@ namespace ServiceManegement.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("users");
                 });
 
             modelBuilder.Entity("ServiceManagement.Domain.Entities.Company", b =>
@@ -147,7 +143,7 @@ namespace ServiceManegement.Infrastructure.Migrations
 
                             b1.HasKey("CompanyId");
 
-                            b1.ToTable("Companies");
+                            b1.ToTable("companies");
 
                             b1.WithOwner()
                                 .HasForeignKey("CompanyId");

@@ -1,4 +1,4 @@
-using ServiceManegement.Infrastructure;
+using ServiceManagement.Infrastructure;
 using ServiceManagement.Application;
 
 var builder = WebApplication.CreateBuilder(args);

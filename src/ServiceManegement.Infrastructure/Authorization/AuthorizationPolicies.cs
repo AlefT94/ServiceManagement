@@ -1,4 +1,4 @@
-﻿namespace ServiceManegement.Infrastructure.Authorization;
+﻿namespace ServiceManagement.Infrastructure.Authorization;
 
 public static class AuthorizationPolicies
 {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using ServiceManagement.Application.Company.Commands.CreateCompany;
+using ServiceManagement.Application.CompanyApplication.Commands.CreateCompany;
 
 namespace ServiceManagement.Application;
 

@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceManagement.API", "sr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceManagement.Domain", "src\ServiceManagement.Domain\ServiceManagement.Domain.csproj", "{5310EF74-DC64-4678-973A-1CE2DC98147A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceManegement.Infrastructure", "src\ServiceManegement.Infrastructure\ServiceManegement.Infrastructure.csproj", "{FF40C55F-656F-4ED9-A072-E4517FCACE4F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceManagement.Infrastructure", "src\ServiceManegement.Infrastructure\ServiceManagement.Infrastructure.csproj", "{FF40C55F-656F-4ED9-A072-E4517FCACE4F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServiceManagement.Application", "src\ServiceManagement.Application\ServiceManagement.Application.csproj", "{D7D470C5-96F9-4FE5-9DF9-BBFB7E8E943B}"
 EndProject
