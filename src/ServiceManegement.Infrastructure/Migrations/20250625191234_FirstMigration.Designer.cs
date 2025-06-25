@@ -12,7 +12,7 @@ using ServiceManagement.Infrastructure.Persistence;
 namespace ServiceManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250625161809_FirstMigration")]
+    [Migration("20250625191234_FirstMigration")]
     partial class FirstMigration
     {
         /// <inheritdoc />
@@ -76,7 +76,8 @@ namespace ServiceManagement.Infrastructure.Migrations
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("boolean");
@@ -96,6 +97,9 @@ namespace ServiceManagement.Infrastructure.Migrations
                         .HasColumnType("timestamp with time zone");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("Email")
+                        .IsUnique();
 
                     b.ToTable("users");
                 });

@@ -1,5 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using ServiceManagement.Domain.Entities;
+﻿using ServiceManagement.Domain.Entities;
 
 namespace ServiceManagement.Infrastructure.Persistence;
 
@@ -23,6 +22,14 @@ public class AppDbContext : DbContext
                 .HasForeignKey<Company>(u => u.UserId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<User>(entity =>
+        {
+            entity.HasKey(u => u.Id);
+            entity.Property(u => u.Email).IsRequired().HasMaxLength(200);
+            // Unique index for Email
+            entity.HasIndex(u => u.Email).IsUnique();
         });
 
         base.OnModelCreating(modelBuilder);

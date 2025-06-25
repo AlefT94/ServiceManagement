@@ -8,10 +8,13 @@ public class UnitOfWork : IUnitOfWork
     private readonly AppDbContext _context;
     public ICompanyRepository Company { get; private set; }
 
+    public IUserRepository User { get; private set; }
+
     public UnitOfWork(AppDbContext context)
     {
         _context = context;
         Company = new CompanyRepository(_context);
+        User = new UserRepository(_context);
     }
 
     public async Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)

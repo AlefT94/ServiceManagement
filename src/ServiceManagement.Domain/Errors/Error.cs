@@ -8,4 +8,5 @@ public record Error(string Code, string Message)
     public static Error EmailInvalidFormat = new("Error.EmailInvalidFormat", "The e-mail format is invalid.");
     public static Error PasswordInvalidFormat = new("Error.PasswordInvalidFormat", "The password format is invalid.");
     public static Error UserCreatingError = new("Error.UserCreatingError", "Error while creating the user.");
+    public static Error InvalidCredentials = new("Error.InvalidCredentials", "Invalid Credentials.");
 }

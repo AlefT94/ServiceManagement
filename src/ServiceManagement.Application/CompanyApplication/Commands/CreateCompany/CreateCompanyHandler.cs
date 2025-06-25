@@ -39,14 +39,12 @@ public class CreateCompanyHandler(IUserPasswordHasher passwordHasher, IUnitOfWor
             await unitOfWork.Company.AddAsync(newCompany, cancellationToken);
             await unitOfWork.SaveChangesAsync(cancellationToken);
 
-            return Result.Success(newCompany.Id);
+            return Result.Success();
 
         }
         catch(Exception ex)
         {
             return Result.Failure(new Error("CompanyCreationFailed", ex.Message));
         }
-
-        return Result.Success();
     }
 }

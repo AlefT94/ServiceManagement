@@ -1,6 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
 using ServiceManagement.Domain.Entities;
-using ServiceManagement.Domain.Enums;
+using ServiceManagement.Domain.Interfaces;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
