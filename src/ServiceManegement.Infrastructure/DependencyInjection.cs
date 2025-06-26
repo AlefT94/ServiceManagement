@@ -69,6 +69,7 @@ public static class DependencyInjection
         services.AddScoped<ITokenGenerator, JwtTokenGenerator>();
         services.AddScoped<IUserPasswordHasher, UserPasswordHasher>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddMemoryCache();
 
         return services;
     }

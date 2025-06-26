@@ -5,11 +5,11 @@ using ServiceManagement.Domain.Errors;
 using ServiceManagement.Domain.Interfaces;
 using ServiceManagement.Domain.ValueObjects;
 
-namespace ServiceManagement.Application.CompanyApplication.Commands.CreateCompany;
+namespace ServiceManagement.Application.AccountApplication.Commands;
 
-public class CreateCompanyHandler(IUserPasswordHasher passwordHasher, IUnitOfWork unitOfWork) : IRequestHandler<CreateCompanyCommand, Result>
+public class CreateAccountHandler(IUserPasswordHasher passwordHasher, IUnitOfWork unitOfWork) : IRequestHandler<CreateAccountCommand, Result>
 {
-    public async Task<Result> Handle(CreateCompanyCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(CreateAccountCommand request, CancellationToken cancellationToken)
     {
         try
         {
@@ -42,9 +42,10 @@ public class CreateCompanyHandler(IUserPasswordHasher passwordHasher, IUnitOfWor
             return Result.Success();
 
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
-            return Result.Failure(new Error("CompanyCreationFailed", ex.Message));
+            return Result.Failure(new Error("AccountCreationFailed", ex.Message));
         }
     }
 }
+

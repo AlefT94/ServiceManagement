@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using ServiceManagement.Domain.Entities;
 
-namespace ServiceManagement.Application.CompanyApplication.Commands.CreateCompany;
+namespace ServiceManagement.Application.AccountApplication.Commands;
 
-public record CreateCompanyCommand(string companyName,
+public record CreateAccountCommand(string companyName,
     string phoneNumber,
     string street,
     string number,
