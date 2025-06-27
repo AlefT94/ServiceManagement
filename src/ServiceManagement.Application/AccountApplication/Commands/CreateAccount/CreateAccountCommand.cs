@@ -1,7 +1,4 @@
-﻿using MediatR;
-using ServiceManagement.Domain.Entities;
-
-namespace ServiceManagement.Application.AccountApplication.Commands;
+﻿namespace ServiceManagement.Application.AccountApplication.Commands.CreateAccount;
 
 public record CreateAccountCommand(string companyName,
     string phoneNumber,
@@ -14,4 +11,5 @@ public record CreateAccountCommand(string companyName,
     string zipCode,
     string email,
     string password,
-    string userName) : IRequest<Result>;
+    string userName,
+    string validationCode) : IRequest<Result>;

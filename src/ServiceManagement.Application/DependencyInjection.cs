@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using ServiceManagement.Application.AccountApplication.Commands;
+using ServiceManagement.Application.AccountApplication.Commands.CreateAccount;
 
 namespace ServiceManagement.Application;
 

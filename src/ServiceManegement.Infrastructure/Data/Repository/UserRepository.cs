@@ -11,6 +11,14 @@ public class UserRepository : IUserRepository
     {
         _context = context;   
     }
+
+    public async Task<bool> ExistsAsync(string email, CancellationToken cancellationToken)
+    {
+        return await _context.Users
+            .AsNoTracking()
+            .AnyAsync(u => u.Email == email, cancellationToken);
+    }
+
     public async Task<User?> GetByEmailAsync(string email, CancellationToken cancellationToken)
     {
         return await _context.Users
