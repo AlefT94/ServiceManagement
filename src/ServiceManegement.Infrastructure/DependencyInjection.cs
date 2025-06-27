@@ -1,10 +1,13 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using ServiceManagement.Application.Interfaces;
 using ServiceManagement.Domain.Interfaces;
 using ServiceManagement.Infrastructure.Authentication;
 using ServiceManagement.Infrastructure.Data.Repository;
+using ServiceManagement.Infrastructure.Implementations;
 using ServiceManagement.Infrastructure.Persistence;
 using System.Text;
 
@@ -69,6 +72,7 @@ public static class DependencyInjection
         services.AddScoped<ITokenGenerator, JwtTokenGenerator>();
         services.AddScoped<IUserPasswordHasher, UserPasswordHasher>();
         services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<ICustomEmailSender, EmailSender>();
         services.AddMemoryCache();
 
         return services;

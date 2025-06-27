@@ -1,8 +1,9 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
+using ServiceManagement.Application.Interfaces;
 
 namespace ServiceManagement.Application.AccountApplication.Commands.GenerateAccountConfirmationCode;
 
-public class GenerateAccountConfirmationCodeHandler(IUnitOfWork unitOfWork, IMemoryCache memoryCache) : IRequestHandler<GenerateAccountConfirmationCodeCommand, Result>
+public class GenerateAccountConfirmationCodeHandler(IUnitOfWork unitOfWork, IMemoryCache memoryCache, ICustomEmailSender emailSender) : IRequestHandler<GenerateAccountConfirmationCodeCommand, Result>
 {
     public async Task<Result> Handle(GenerateAccountConfirmationCodeCommand request, CancellationToken cancellationToken)
     {
@@ -58,7 +59,7 @@ public class GenerateAccountConfirmationCodeHandler(IUnitOfWork unitOfWork, IMem
 
         memoryCache.Set(codeKey, confirmationCode, TimeSpan.FromMinutes(3));
 
-        //TODO: Send confirmation code via email
+        await emailSender.SendEmailAsync(confirmationCode);
 
         return Result.Success();
     }
