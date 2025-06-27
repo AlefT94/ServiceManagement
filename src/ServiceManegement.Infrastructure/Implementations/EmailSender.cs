@@ -7,7 +7,7 @@ public class EmailSender : ICustomEmailSender
     public Task SendEmailAsync(string text)
     {
         // Implementation for sending an email
-        Console.WriteLine("text");
+        Console.WriteLine(text);
         return Task.CompletedTask;
     }
 }
