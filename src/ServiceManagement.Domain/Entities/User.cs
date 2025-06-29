@@ -12,6 +12,7 @@ public class User : BaseEntity
     public UserRole Role { get; private set; }
     public bool IsActive { get; set; }
     public Company? Company { get; set; }
+    public Employee? Employee { get; set; }
 
     protected User(){ }
 

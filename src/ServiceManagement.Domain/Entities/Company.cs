@@ -12,6 +12,7 @@ public class Company : BaseEntity
     public bool IsActive { get; private set; }
     public int UserId { get; set; }
     public User User { get; set; }
+    public IEnumerable<Employee> Employees { get; set; } = new List<Employee>();
 
     private Company() : base() { }
 

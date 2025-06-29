@@ -9,6 +9,7 @@ public class AppDbContext : DbContext
 
     public DbSet<Company> Companies { get; set; }
     public DbSet<User> Users { get; set; }
+    public DbSet<Employee> Employees { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Company>(entity =>
@@ -24,6 +25,23 @@ public class AppDbContext : DbContext
                 .OnDelete(DeleteBehavior.Cascade);
         });
 
+        modelBuilder.Entity<Employee>(entity =>
+        {
+            entity.HasKey(c => c.Id);
+            entity.Property(c => c.Name).IsRequired().HasMaxLength(200);
+            entity.HasOne(c => c.User)
+                .WithOne(u => u.Employee)
+                .HasForeignKey<Employee>(u => u.UserId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+
+            entity.HasOne(c => c.Company)
+                .WithMany(c => c.Employees)
+                .HasForeignKey(c => c.CompanyId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
+        });
+
         modelBuilder.Entity<User>(entity =>
         {
             entity.HasKey(u => u.Id);
@@ -31,6 +49,7 @@ public class AppDbContext : DbContext
             // Unique index for Email
             entity.HasIndex(u => u.Email).IsUnique();
         });
+
 
         base.OnModelCreating(modelBuilder);
 
