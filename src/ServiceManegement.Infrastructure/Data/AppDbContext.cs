@@ -10,6 +10,8 @@ public class AppDbContext : DbContext
     public DbSet<Company> Companies { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<Employee> Employees { get; set; }
+    public DbSet<Service> Services { get; set; }
+    public DbSet<ServiceImage> ServiceImages { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Company>(entity =>
@@ -50,6 +52,29 @@ public class AppDbContext : DbContext
             entity.HasIndex(u => u.Email).IsUnique();
         });
 
+        modelBuilder.Entity<Service>(entity =>
+        {
+            entity.HasKey(u => u.Id);
+            entity.Property(u => u.Name).IsRequired().HasMaxLength(200);
+            entity.Property(u => u.Description).IsRequired().HasMaxLength(200);
+            entity.Property(u => u.Price).IsRequired().HasColumnType("decimal(18,2)");
+            entity.HasOne(s => s.Company)
+                .WithMany(c => c.Services)
+                .HasForeignKey(s => s.CompanyId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
+        });
+
+        modelBuilder.Entity<ServiceImage>(entity =>
+        {
+            entity.HasKey(si => si.Id);
+            entity.Property(si => si.ImageUrl).IsRequired().HasMaxLength(500);
+            entity.HasOne(si => si.Service)
+                .WithMany(s => s.ServiceImages)
+                .HasForeignKey(si => si.ServiceId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Cascade);
+        });
 
         base.OnModelCreating(modelBuilder);
 

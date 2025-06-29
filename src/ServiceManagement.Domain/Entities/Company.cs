@@ -13,6 +13,7 @@ public class Company : BaseEntity
     public int UserId { get; set; }
     public User User { get; set; }
     public IEnumerable<Employee> Employees { get; set; } = new List<Employee>();
+    public IEnumerable<Service> Services { get; set; } = new List<Service>();
 
     private Company() : base() { }
 
