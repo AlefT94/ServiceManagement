@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -8,6 +9,7 @@ using ServiceManagement.Domain.Interfaces;
 using ServiceManagement.Infrastructure.Authentication;
 using ServiceManagement.Infrastructure.Data.Repository;
 using ServiceManagement.Infrastructure.Implementations;
+using ServiceManagement.Infrastructure.Interceptors;
 using ServiceManagement.Infrastructure.Persistence;
 using System.Text;
 
@@ -20,9 +22,20 @@ public static class DependencyInjection
             IConfiguration configuration)
     {
 
+        services.AddScoped<ITokenGenerator, JwtTokenGenerator>();
+        services.AddScoped<IUserPasswordHasher, UserPasswordHasher>();
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
+        services.AddScoped<ICustomEmailSender, EmailSender>();
+        services.AddScoped<ISaveChangesInterceptor, BaseEntityInterceptor>();
+        services.AddMemoryCache();
+
+
         //DbContext configuration
-        services.AddDbContext<AppDbContext>(options =>
-            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection")));
+        services.AddDbContext<AppDbContext>((sp,options) =>
+        {
+            options.UseNpgsql(configuration.GetConnectionString("DefaultConnection"));
+            options.AddInterceptors(sp.GetService<ISaveChangesInterceptor>());
+        });
 
         //JWT configurations
         var jwtSettings = new JwtSettings();
@@ -68,12 +81,6 @@ public static class DependencyInjection
             options.AddPolicy(AuthorizationPolicies.AllUsers, policy =>
                 policy.RequireAuthenticatedUser());
         });*/
-
-        services.AddScoped<ITokenGenerator, JwtTokenGenerator>();
-        services.AddScoped<IUserPasswordHasher, UserPasswordHasher>();
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped<ICustomEmailSender, EmailSender>();
-        services.AddMemoryCache();
 
         return services;
     }
