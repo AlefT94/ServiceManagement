@@ -8,5 +8,4 @@ public class Service : BaseEntity
     public int CompanyId { get; set; }
     public Company Company { get; set; }
     public bool IsActive { get; set; }
-    public List<ServiceImage> ServiceImages { get; set; } = new List<ServiceImage>();
 }

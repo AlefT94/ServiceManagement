@@ -11,7 +11,6 @@ public class AppDbContext : DbContext
     public DbSet<User> Users { get; set; }
     public DbSet<Employee> Employees { get; set; }
     public DbSet<Service> Services { get; set; }
-    public DbSet<ServiceImage> ServiceImages { get; set; }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Company>(entity =>
@@ -63,17 +62,6 @@ public class AppDbContext : DbContext
                 .HasForeignKey(s => s.CompanyId)
                 .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
-        });
-
-        modelBuilder.Entity<ServiceImage>(entity =>
-        {
-            entity.HasKey(si => si.Id);
-            entity.Property(si => si.ImageUrl).IsRequired().HasMaxLength(500);
-            entity.HasOne(si => si.Service)
-                .WithMany(s => s.ServiceImages)
-                .HasForeignKey(si => si.ServiceId)
-                .IsRequired()
-                .OnDelete(DeleteBehavior.Cascade);
         });
 
         base.OnModelCreating(modelBuilder);
