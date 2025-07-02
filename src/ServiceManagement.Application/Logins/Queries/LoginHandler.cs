@@ -3,7 +3,7 @@ using ServiceManagement.Domain.Entities;
 using ServiceManagement.Domain.Errors;
 using ServiceManagement.Domain.Interfaces;
 
-namespace ServiceManagement.Application.LoginApplication.Queries;
+namespace ServiceManagement.Application.Logins.Queries;
 
 public class LoginHandler(IUnitOfWork unitOfWork, IUserPasswordHasher passwordHasher, ITokenGenerator tokenGenerator) : IRequestHandler<LoginQuery, Result<LoginResponse>>
 {

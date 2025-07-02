@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using ServiceManagement.Application.Interfaces;
 
-namespace ServiceManagement.Application.AccountApplication.Commands.GenerateAccountConfirmationCode;
+namespace ServiceManagement.Application.Accounts.Commands.GenerateAccountConfirmationCode;
 
 public class GenerateAccountConfirmationCodeHandler(IUnitOfWork unitOfWork, IMemoryCache memoryCache, ICustomEmailSender emailSender) : IRequestHandler<GenerateAccountConfirmationCodeCommand, Result>
 {

@@ -1,10 +1,8 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
 using ServiceManagement.Domain.Enums;
-using ServiceManagement.Domain.Errors;
-using ServiceManagement.Domain.Interfaces;
 using ServiceManagement.Domain.ValueObjects;
 
-namespace ServiceManagement.Application.AccountApplication.Commands.CreateAccount;
+namespace ServiceManagement.Application.Accounts.Commands.CreateAccount;
 
 public class CreateAccountHandler(IUserPasswordHasher passwordHasher, IUnitOfWork unitOfWork, IMemoryCache memoryCache) : IRequestHandler<CreateAccountCommand, Result>
 {

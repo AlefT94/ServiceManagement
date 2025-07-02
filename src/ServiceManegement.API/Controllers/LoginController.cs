@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using ServiceManagement.Application.LoginApplication.Queries;
+using ServiceManagement.Application.Logins.Queries;
 
 namespace ServiceManagement.API.Controllers;
 

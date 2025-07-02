@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
-using ServiceManagement.Application.AccountApplication.Commands.CreateAccount;
-using ServiceManagement.Application.AccountApplication.Commands.GenerateAccountConfirmationCode;
+using ServiceManagement.Application.Accounts.Commands.CreateAccount;
+using ServiceManagement.Application.Accounts.Commands.GenerateAccountConfirmationCode;
 
 namespace ServiceManagement.API.Controllers;
 

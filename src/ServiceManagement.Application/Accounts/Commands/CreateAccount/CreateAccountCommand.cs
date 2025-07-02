@@ -1,4 +1,4 @@
-﻿namespace ServiceManagement.Application.AccountApplication.Commands.CreateAccount;
+﻿namespace ServiceManagement.Application.Accounts.Commands.CreateAccount;
 
 public record CreateAccountCommand(string companyName,
     string phoneNumber,
